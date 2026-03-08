@@ -4,9 +4,8 @@ using System.Text;
 
 namespace ProyectoParejasPOO
 {
-    
-    public class BattleUI
+    public class TurnManager
     {
-        
-    } 
+
+    }
 }

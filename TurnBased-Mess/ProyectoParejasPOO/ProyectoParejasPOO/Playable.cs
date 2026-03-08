@@ -9,8 +9,7 @@ namespace ProyectoParejasPOO
         CharacterAction? chosenAction;
         public int mana;
         public int maxMana;
-        public int level;
-        public List<CharacterAction> actions = new List<CharacterAction>();
+        public bool isDefending = false;
 
         public Playable(string name, int maxHp, int atk, int spd, int exp, int defense, int maxMana, int level) : base(name)
         {
@@ -25,13 +24,13 @@ namespace ProyectoParejasPOO
             this.mana = maxMana;
             this.level = level;
 
-            actions.Add(CharacterAction.Atacar);
+            this.actions.Add(new SingleTargetAttack());
         }
 
         public override CharacterAction ChooseAction() 
         {
             CharacterAction action = BattleUI.GetPlayerAction(this);
-            action.ChooseTarget();
+            action.user = this;
             return action;
         }
         public void GainExperience(int ammount)

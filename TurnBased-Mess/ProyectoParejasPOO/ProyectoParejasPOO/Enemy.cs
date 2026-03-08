@@ -11,15 +11,15 @@ namespace ProyectoParejasPOO
         public int expOnDeath;
         public int hpScaleFactor;
         public int atkScaleFactor;
-        public int level;
-        public List<CharacterAction> actions = new List<CharacterAction>();
+        
+        
 
         public Enemy(string name, int level) : base(name)
         {
             this.name = name;
             this.level = level;
 
-            actions.Add(CharacterAction.Atacar);
+            actions.Add(new SingleTargetAttack());
             ScaleStats();
         }
         public override CharacterAction ChooseAction()
@@ -27,7 +27,9 @@ namespace ProyectoParejasPOO
             Random ran = new Random();
             int index = ran.Next(actions.Count);
 
-            return actions[index];
+            CharacterAction action = actions[index];
+            action.user = this;
+            return action;
 
         }
 

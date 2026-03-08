@@ -11,7 +11,7 @@ namespace ProyectoParejasPOO
         public List<Playable> playerCharacters = new List<Playable>();
         public List<Enemy> currentEnemies = new List<Enemy>();
 
-        //public TurnManager turnManager = new TurnManager();
+        public TurnManager turnManager = new TurnManager();
         Stages stagesList = new Stages();
 
         public void StartGame()
@@ -26,12 +26,47 @@ namespace ProyectoParejasPOO
             Playable hero = new Playable(BattleUI.CreateHeroName(), 10, 2, 5, 0, 1, 5, 1); // <-- Se definen las estadísticas bases del héroe.
             playerCharacters.Add(hero);
         }
-        public void StartBattle()
+        public void RunBattle()
         {
             Stage stage = stagesList.allStages[currentStageIndex];
-            stage.GenerateEnemies();
+            currentEnemies.AddRange(stage.GenerateEnemies());
 
-            // Luego se añaden al turnManager junto al héroe...
+            SaveCurrentUnits();
+            while (!IsBattleOver())
+            {
+                ProcessTurn();
+            }
+            CheckBattleState();
+        }
+        public void ProcessTurn()
+        {
+            Character actor = turnManager.NextTurn();
+
+            if (!actor.isAlive)
+                return;
+
+            CharacterAction action = RequestAction(actor);
+            action.ChooseTargets(this);
+            action.Execute();
+        }
+        public bool IsBattleOver()
+        {
+            return currentEnemies.All(e => !e.isAlive) || playerCharacters.All(p => !p.isAlive);
+        }
+        public void SaveCurrentUnits()
+        {
+            if (playerCharacters.Count > 0 && currentEnemies.Count > 0)
+            {
+                turnManager.ClearUnits();
+                foreach (Playable p in playerCharacters)
+                {
+                    turnManager.AddUnit(p);
+                }
+                foreach (Enemy e in currentEnemies)
+                {
+                    turnManager.AddUnit(e);
+                }
+            }
         }
         public List<Character> GetAliveEnemies(Character requester)
         {
@@ -46,7 +81,7 @@ namespace ProyectoParejasPOO
         }
         public void ExecuteAction(Character user, CharacterAction action)
         {
-            action.Execute(user, action.target);
+            action.Execute();
         }
         public void LoadNextStage()
         {
@@ -59,7 +94,7 @@ namespace ProyectoParejasPOO
             else
             {
                 BattleUI.ShowStageIntro(currentStageIndex);
-                StartBattle();
+                RunBattle();
             }
             // Cargar enemigos y demás elementos de la siguiente etapa
         }
