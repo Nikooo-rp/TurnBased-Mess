@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProyectoParejasPOO")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6b2d37fe18bcec4abb749de74eff4f4317ab812")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+08e24bbe9a92dab6b3db5cab3862ebffbf138706")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProyectoParejasPOO")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProyectoParejasPOO")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
