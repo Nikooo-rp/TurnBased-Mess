@@ -72,6 +72,12 @@ namespace ProyectoParejasPOO
                 int damage = (user.atk * power);
                 target.TakeDamage(damage);
             }
+
+            if (user is Playable)
+            {
+                Playable p = (Playable)user;
+                p.mana = Math.Max(0, p.mana - manaCost);
+            }
         }
     }
     public class Defend : CharacterAction
@@ -94,6 +100,7 @@ namespace ProyectoParejasPOO
             {
                 Playable p = (Playable)user;
                 p.isDefending = true;
+                p.mana = Math.Max(0, p.mana - manaCost);
                 BattleUI.DisplayDefend(p);
             }
             else
@@ -122,6 +129,12 @@ namespace ProyectoParejasPOO
             int healAmount = (user.atk * power);
             user.hp = Math.Min(user.maxHP, user.hp + healAmount);
             BattleUI.DisplayHeal(user, healAmount);
+
+            if (user is Playable)
+            {
+                Playable p = (Playable)user;
+                p.mana = Math.Max(0, p.mana - manaCost);
+            }
         }
     }
 
@@ -147,6 +160,12 @@ namespace ProyectoParejasPOO
             {
                 int damage = (user.atk * power) + (user.level * 2); // El daño aumenta con el nivel del usuario
                 target.TakeDamage(damage);
+            }
+
+            if (user is Playable)
+            {
+                Playable p = (Playable)user;
+                p.mana = Math.Max(0, p.mana - manaCost);
             }
         }
     }

@@ -136,7 +136,7 @@ namespace ProyectoParejasPOO
                 for (int i = 0; i < player.actions.Count; i++)
                 {
                     CharacterAction act = player.actions[i];
-                    Console.WriteLine($"{i + 1}) {act.name}");
+                    Console.WriteLine($"{i + 1}) {act.name} (Costo maná: {act.manaCost})");
                 }
 
                 Console.Write("Opción: ");
@@ -153,6 +153,7 @@ namespace ProyectoParejasPOO
                             continue;
                         }
                         return selected;
+                        // ShowActionInfo generaba mucho clutter en la consola, así que la info se movió a la lista inicial de acciones.
                         ShowActionInfo(selected); // Es preferible usar la función dedicada a esto.
                         Console.WriteLine("¿Deseas usar esta acción? (s/n)");
                         string? confirm = Console.ReadLine();
