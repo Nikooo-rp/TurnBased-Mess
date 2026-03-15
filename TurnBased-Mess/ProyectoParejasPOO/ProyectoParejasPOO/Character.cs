@@ -27,7 +27,7 @@ namespace ProyectoParejasPOO
                     //Console.WriteLine("Jugador está defendiendo, aumentando defensa temporalmente."); <-- debug
 
                     oDefense = defense;
-                    defense += level - 1;
+                    defense += (int)(level/2);
                 }
             }
 

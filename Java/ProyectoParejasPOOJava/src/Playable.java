@@ -42,8 +42,8 @@ public class Playable extends Character {
 
         levelTable.add(new LevelEntry(2, 10,  new Defend(),          2, 0, 1, 1, 0));
         levelTable.add(new LevelEntry(3, 30,  null,                  2, 1, 1, 1, 0));
-        levelTable.add(new LevelEntry(4, 60,  new AllTargetAttack(), 3, 1, 1, 1, 1));
-        levelTable.add(new LevelEntry(5, 140, null,                  3, 1, 1, 1, 1));
+        levelTable.add(new LevelEntry(4, 80,  new AllTargetAttack(), 3, 1, 1, 1, 1));
+        levelTable.add(new LevelEntry(5, 180, null,                  3, 1, 1, 1, 1));
         levelTable.add(new LevelEntry(6, 300, new Heal(),            4, 2, 1, 2, 2));
         levelTable.add(new LevelEntry(7, 650, null,                  4, 2, 1, 2, 3));
         levelTable.add(new LevelEntry(8, 1400,new FireBall(),        5, 3, 2, 2, 3));

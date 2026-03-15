@@ -244,6 +244,7 @@ namespace ProyectoParejasPOO
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"{player.name} gana {exp} puntos de experiencia!");
+            Console.WriteLine("Total EXP: " + player.exp);
             Console.ResetColor();
         }
 

@@ -19,8 +19,8 @@ namespace ProyectoParejasPOO
             // El primer nivel (nivel 1) es el nivel inicial del jugador, por lo que no requiere experiencia ni otorga bonificaciones o nuevas acciones.
             new(2, 10, new Defend(), 2, 0, 1, 1, 0),
             new(3, 30, null, 2, 1, 1, 1, 0),
-            new(4, 60, new AllTargetAttack(), 3, 1, 1, 1, 1),
-            new(5, 140, null, 3, 1, 1, 1, 1),
+            new(4, 80, new AllTargetAttack(), 3, 1, 1, 1, 1),
+            new(5, 180, null, 3, 1, 1, 1, 1),
             new(6, 300, new Heal(), 4, 2, 1, 2, 2),
             new(7, 650, null, 4, 2, 1, 2, 3),
             new(8, 1400, new FireBall(), 5, 3, 2, 2, 3),

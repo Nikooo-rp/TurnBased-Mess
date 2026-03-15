@@ -6,7 +6,7 @@ public class BattleUI {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void showGameIntro() {
-        System.out.print("\033[H\033[2J");
+        System.out.print("\033[H\033[2J"); // Este es el equivalente a un Console.Clear() con ANSI escape codes.
         System.out.flush();
         System.out.println("=== Bienvenido a THE DUNGEON ===");
         System.out.println("Preparárate para la batalla.");
@@ -162,6 +162,7 @@ public class BattleUI {
 
     public static void displayExperienceGain(Playable player, int exp) {
         System.out.println("\u001B[33m" + player.name + " gana " + exp + " puntos de experiencia!\u001B[0m");
+        System.out.println("\u001B[33mexp total: " + player.exp + "\u001B[0m");
     }
 
     public static void displayLevelUp(Playable player, CharacterAction action) {

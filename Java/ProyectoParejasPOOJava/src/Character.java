@@ -17,7 +17,7 @@ public abstract class Character {
         if (this instanceof Playable p) {
             if (p.isDefending) {
                 oDefense  = defense;
-                defense  += level - 1;
+                defense  += (int)(level/2);
             }
         }
 
