@@ -72,18 +72,8 @@ namespace ProyectoParejasPOO
         public Troll(int level) : base("Troll", level)
         {
             hpScaleFactor = 10;
-            atkScaleFactor = 3;
+            atkScaleFactor = 2;
             expOnDeath = 30;
-            ScaleStats();
-        }
-    }
-    public class Wizard : Enemy
-    {
-        public Wizard(int level) : base("Mago", level)
-        {
-            hpScaleFactor = 5;
-            atkScaleFactor = 4;
-            expOnDeath = 40;
             ScaleStats();
         }
     }
