@@ -18,14 +18,17 @@ namespace ProyectoParejasPOO
 
         public void TakeDamage(int damage)
         {
+            int oDefense = 0;
             if (this is Playable) // Si es jugador, revisamos si está defendiendo
             {
                 Playable p = (Playable)this;
                 if (p.isDefending)
                 {
-                    defense += (int)MathF.Ceiling(defense / 6);
+                    //Console.WriteLine("Jugador está defendiendo, aumentando defensa temporalmente."); <-- debug
+
+                    oDefense = defense;
+                    defense += level - 1;
                 }
-                p.isDefending = false; // La defensa solo dura un turno, se resetea después de aplicarla
             }
 
             int damageTaken = Math.Max(0, damage - this.defense);
@@ -37,6 +40,18 @@ namespace ProyectoParejasPOO
             {
                 this.hp = Math.Max(0, this.hp - damageTaken);
                 BattleUI.DisplayDamage(this, damageTaken);
+
+                if (this is Playable) // Si es jugador, reseteamos la defensa después de recibir daño
+                {
+                    Playable p = (Playable)this;
+                    if (p.isDefending)
+                    {
+                        p.isDefending = false; // Reseteamos el estado de defensa después de recibir daño
+                        p.defense = oDefense; // Reseteamos la defensa al valor original después de recibir daño
+
+                        //Console.WriteLine("Reiniciado defensa del jugador después de recibir daño."); <-- debug
+                    }
+                }
             }
 
             if (this.hp <= 0)

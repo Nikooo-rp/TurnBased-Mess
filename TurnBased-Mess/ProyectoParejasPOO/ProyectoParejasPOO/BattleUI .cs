@@ -166,7 +166,7 @@ namespace ProyectoParejasPOO
             }
         } //copilot (no tenía ni idea)
 
-        public static void ShowActionInfo(CharacterAction action)
+        public static void ShowActionInfo(CharacterAction action) // En desuso.
         {
             Console.WriteLine($"Acción: {action.name}");
             Console.WriteLine(action.description);
