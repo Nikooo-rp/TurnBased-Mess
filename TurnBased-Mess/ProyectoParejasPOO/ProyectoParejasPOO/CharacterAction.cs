@@ -23,7 +23,7 @@ namespace ProyectoParejasPOO
         public SingleTargetAttack()
         {
             name = "Ataque simple";
-            description = "Tajo sencillo, un solo objetivo";
+            description = "Tajo único, recupera maná al golpear enemigos";
             power = 2;
             manaCost = 0;
         }
@@ -43,6 +43,11 @@ namespace ProyectoParejasPOO
         }
         public override void Execute()
         {
+
+            if (user is Playable p)
+            {
+                p.mana = Math.Min(p.maxMana, p.mana + 1); // Recupera 1 de maná al atacar
+            }
             Character target = targets[0];
             int damage = (user.atk * power);
             BattleUI.DisplayAttack(user, target, this);
@@ -66,6 +71,12 @@ namespace ProyectoParejasPOO
         }
         public override void Execute()
         {
+            if (user is Playable)
+            {
+                Playable p = (Playable)user;
+                p.mana = Math.Max(0, p.mana - manaCost);
+            }
+
             BattleUI.DisplayWideAttack(user, this);
             foreach (Character target in targets)
             {
@@ -73,11 +84,6 @@ namespace ProyectoParejasPOO
                 target.TakeDamage(damage);
             }
 
-            if (user is Playable)
-            {
-                Playable p = (Playable)user;
-                p.mana = Math.Max(0, p.mana - manaCost);
-            }
         }
     }
     public class Defend : CharacterAction
@@ -126,15 +132,16 @@ namespace ProyectoParejasPOO
         }
         public override void Execute()
         {
-            int healAmount = (user.atk * power);
-            user.hp = Math.Min(user.maxHP, user.hp + healAmount);
-            BattleUI.DisplayHeal(user, healAmount);
-
             if (user is Playable)
             {
                 Playable p = (Playable)user;
                 p.mana = Math.Max(0, p.mana - manaCost);
             }
+
+            int healAmount = (user.atk * power);
+            user.hp = Math.Min(user.maxHP, user.hp + healAmount);
+            BattleUI.DisplayHeal(user, healAmount);
+
         }
     }
 

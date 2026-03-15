@@ -39,7 +39,7 @@ namespace ProyectoParejasPOO
             maxHP += hpScaleFactor * level;
             hp = maxHP;
             atk += atkScaleFactor * level;
-            defense += defense * level;
+            defense += Math.Min(0, level - 2);
             expOnDeath += (expOnDeath * level) - level*2;
             /*Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"Creado {name} de nivel {level}, maxHP = {maxHP}");
@@ -54,6 +54,8 @@ namespace ProyectoParejasPOO
             hpScaleFactor = 3;
             atkScaleFactor = 1;
             expOnDeath = 10;
+            spd = 3;
+            defense = 0;
             ScaleStats();
         }
     }
@@ -64,6 +66,8 @@ namespace ProyectoParejasPOO
             hpScaleFactor = 4;
             atkScaleFactor = 2;
             expOnDeath = 20;
+            spd = 2;
+            defense = 0;
             ScaleStats();
         }
     }
@@ -71,9 +75,11 @@ namespace ProyectoParejasPOO
     {
         public Troll(int level) : base("Troll", level)
         {
-            hpScaleFactor = 10;
-            atkScaleFactor = 2;
+            hpScaleFactor = 5;
+            atkScaleFactor = 1;
             expOnDeath = 30;
+            spd = 6;
+            defense = 1;
             ScaleStats();
         }
     }
@@ -84,6 +90,8 @@ namespace ProyectoParejasPOO
             hpScaleFactor = 8;
             atkScaleFactor = 2;
             expOnDeath = 50;
+            spd = 1;
+            defense = 2;
             ScaleStats();
         }
     }
@@ -91,9 +99,11 @@ namespace ProyectoParejasPOO
     {
         public Giant(int level) : base("Gigante", level)
         {
-            hpScaleFactor = 12;
-            atkScaleFactor = 5;
+            hpScaleFactor = 9;
+            atkScaleFactor = 4;
             expOnDeath = 60;
+            spd = 1;
+            defense = 3;
             ScaleStats();
         }
 
@@ -106,6 +116,8 @@ namespace ProyectoParejasPOO
             hpScaleFactor = 7;
             atkScaleFactor = 6;
             expOnDeath = 70;
+            spd = 4;
+            defense = 2;
             ScaleStats();
         }
     }

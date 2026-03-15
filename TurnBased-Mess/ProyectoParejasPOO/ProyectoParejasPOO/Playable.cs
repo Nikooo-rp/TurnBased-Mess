@@ -20,10 +20,10 @@ namespace ProyectoParejasPOO
             new(2, 10, new Defend(), 2, 0, 1, 1, 0),
             new(3, 30, null, 2, 1, 1, 1, 0),
             new(4, 80, new AllTargetAttack(), 3, 1, 1, 1, 1),
-            new(5, 180, null, 3, 1, 1, 1, 1),
-            new(6, 300, new Heal(), 4, 2, 1, 2, 2),
-            new(7, 650, null, 4, 2, 1, 2, 3),
-            new(8, 1400, new FireBall(), 5, 3, 2, 2, 3),
+            new(5, 180, new Heal(), 3, 1, 1, 1, 4),
+            new(6, 300, null, 6, 3, 1, 2, 2),
+            new(7, 650, null, 10, 5, 1, 4, 3),
+            new(8, 1400, new FireBall(), 20, 6, 2, 4, 5),
             // Agregar más niveles según sea necesario
         };
 
