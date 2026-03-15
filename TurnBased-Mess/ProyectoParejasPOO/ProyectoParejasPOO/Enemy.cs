@@ -12,7 +12,9 @@ namespace ProyectoParejasPOO
         public int hpScaleFactor;
         public int atkScaleFactor;
         
-        
+        // Evento que se dispara al morir el enemigo, para notificar al GameManager y otorgar experiencia al jugador
+        // Action<int> es un delegado que representa un método que recibe un int (la experiencia otorgada) y no devuelve nada. El GameManager se suscribirá a este evento para recibir la experiencia cuando el enemigo muera.
+        public Action<int> OnDeath;
 
         public Enemy(string name, int level) : base(name)
         {
@@ -20,7 +22,6 @@ namespace ProyectoParejasPOO
             this.level = level;
 
             actions.Add(new SingleTargetAttack());
-            ScaleStats();
         }
         public override CharacterAction ChooseAction()
         {
@@ -39,7 +40,12 @@ namespace ProyectoParejasPOO
             hp = maxHP;
             atk += atkScaleFactor * level;
             defense += defense * level;
+            expOnDeath += (expOnDeath * level) - level*2;
+            /*Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"Creado {name} de nivel {level}, maxHP = {maxHP}");
+            Console.ResetColor();*/
         }
+
     }
     public class Slime : Enemy
     {
@@ -48,27 +54,27 @@ namespace ProyectoParejasPOO
             hpScaleFactor = 3;
             atkScaleFactor = 1;
             expOnDeath = 10;
-
+            ScaleStats();
         }
     }
     public class Orc : Enemy
     {
-        public Orc(int level) : base("Duende", level)
+        public Orc(int level) : base("Orco", level)
         {
             hpScaleFactor = 4;
             atkScaleFactor = 2;
             expOnDeath = 20;
-
+            ScaleStats();
         }
     }
     public class Troll : Enemy
     {
-        public Troll(int level) : base("Orco", level)
+        public Troll(int level) : base("Troll", level)
         {
             hpScaleFactor = 10;
             atkScaleFactor = 3;
             expOnDeath = 30;
-
+            ScaleStats();
         }
     }
     public class Wizard : Enemy
@@ -78,7 +84,7 @@ namespace ProyectoParejasPOO
             hpScaleFactor = 5;
             atkScaleFactor = 4;
             expOnDeath = 40;
-
+            ScaleStats();
         }
     }
     public class MotherSlime : Enemy
@@ -88,7 +94,7 @@ namespace ProyectoParejasPOO
             hpScaleFactor = 8;
             atkScaleFactor = 2;
             expOnDeath = 50;
-
+            ScaleStats();
         }
     }
     public class Giant : Enemy
@@ -98,7 +104,7 @@ namespace ProyectoParejasPOO
             hpScaleFactor = 12;
             atkScaleFactor = 5;
             expOnDeath = 60;
-
+            ScaleStats();
         }
 
     }
@@ -110,7 +116,7 @@ namespace ProyectoParejasPOO
             hpScaleFactor = 7;
             atkScaleFactor = 6;
             expOnDeath = 70;
-
+            ScaleStats();
         }
     }
 }

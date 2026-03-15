@@ -45,8 +45,8 @@ namespace ProyectoParejasPOO
         {
             Character target = targets[0];
             int damage = (user.atk * power);
-            target.TakeDamage(damage);
             BattleUI.DisplayAttack(user, target, this);
+            target.TakeDamage(damage);
         }
     }
     public class AllTargetAttack : CharacterAction
@@ -66,12 +66,12 @@ namespace ProyectoParejasPOO
         }
         public override void Execute()
         {
+            BattleUI.DisplayWideAttack(user, this);
             foreach (Character target in targets)
             {
                 int damage = (user.atk * power);
                 target.TakeDamage(damage);
             }
-            BattleUI.DisplayWideAttack(user, this);
         }
     }
     public class Defend : CharacterAction
@@ -110,7 +110,7 @@ namespace ProyectoParejasPOO
             name = "Curar heridas";
             description = "Recupera parte de tu salud";
             power = 3;
-            manaCost = 5 + user.level;
+            manaCost = 5;
         }
         public override void ChooseTargets(GameManager gm)
         {
@@ -122,6 +122,32 @@ namespace ProyectoParejasPOO
             int healAmount = (user.atk * power);
             user.hp = Math.Min(user.maxHP, user.hp + healAmount);
             BattleUI.DisplayHeal(user, healAmount);
+        }
+    }
+
+    public class FireBall : CharacterAction
+    {
+        public FireBall()
+        {
+            name = "Bola de fuego";
+            description = "Lanzas una bola de fuego que daña a todos los enemigos, con una potencia que aumenta con tu nivel";
+            power = 10;
+            manaCost = 15;
+        }
+        public override void ChooseTargets(GameManager gm)
+        {
+            targets.Clear();
+            List<Character> enemies = gm.GetAliveEnemies(user);
+            targets.AddRange(enemies);
+        }
+        public override void Execute()
+        {
+            BattleUI.DisplayFireBall(user);
+            foreach (Character target in targets)
+            {
+                int damage = (user.atk * power) + (user.level * 2); // El daño aumenta con el nivel del usuario
+                target.TakeDamage(damage);
+            }
         }
     }
 }

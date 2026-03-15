@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nicoe\\source\\repos\\TurnBased-Mess\\ProyectoParejasPOO\\ProyectoParejasPOO\\ProyectoParejasPOO.csproj",
+      "projectUniqueName": "C:\\Users\\nicoe\\source\\repos\\TurnBased-Mess\\TurnBased-Mess\\TurnBased-Mess\\ProyectoParejasPOO\\ProyectoParejasPOO\\ProyectoParejasPOO.csproj",
       "projectName": "ProyectoParejasPOO",
-      "projectPath": "C:\\Users\\nicoe\\source\\repos\\TurnBased-Mess\\ProyectoParejasPOO\\ProyectoParejasPOO\\ProyectoParejasPOO.csproj",
+      "projectPath": "C:\\Users\\nicoe\\source\\repos\\TurnBased-Mess\\TurnBased-Mess\\TurnBased-Mess\\ProyectoParejasPOO\\ProyectoParejasPOO\\ProyectoParejasPOO.csproj",
       "packagesPath": "C:\\Users\\nicoe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nicoe\\source\\repos\\TurnBased-Mess\\ProyectoParejasPOO\\ProyectoParejasPOO\\obj\\",
+      "outputPath": "C:\\Users\\nicoe\\source\\repos\\TurnBased-Mess\\TurnBased-Mess\\TurnBased-Mess\\ProyectoParejasPOO\\ProyectoParejasPOO\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

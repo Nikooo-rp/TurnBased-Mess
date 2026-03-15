@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ProyectoParejasPOO
 {
-    
+
     public static class BattleUI
     {
         public static void ShowGameIntro()
@@ -14,8 +14,7 @@ namespace ProyectoParejasPOO
             Console.WriteLine("=== Bienvenido a THE DUNGEON ===");
             Console.WriteLine("Preparárate para la batalla.");
             Console.WriteLine("Presiona cualquier tecla para continuar...");
-            Console.ReadKey();
-            Console.WriteLine();
+            Console.ReadKey(false);
         }
 
         public static string CreateHeroName()
@@ -31,7 +30,6 @@ namespace ProyectoParejasPOO
 
         public static void ShowEnemiesIntro(List<Enemy> enemies)
         {
-            Console.Clear();
             if (enemies == null || enemies.Count == 0)
             {
                 Console.WriteLine("No hay enemigos en esta etapa.");
@@ -49,44 +47,54 @@ namespace ProyectoParejasPOO
             Console.WriteLine("pulsa una tecla para iniciar el combate.");
             Console.ReadKey();
         }
-
         public static void ShowTurnStart(Character unit)
         {
-            Console.WriteLine($"Es el turno de {unit.name}");
-            Console.WriteLine();
+            if (unit is Playable)
+                Console.WriteLine("Es tu turno!");
+            else
+                Console.WriteLine($"Es el turno de {unit.name}");
+
         }
         public static void DisplayAttack(Character user, Character target, CharacterAction action)
         {
             Console.WriteLine($"{user.name} usa {action.name} sobre {target.name}.");
-            Console.WriteLine($"{target.name} HP: {target.hp}/{target.maxHP}");
-            Console.WriteLine();
+            Console.ReadLine();
         }
         public static void DisplayWideAttack(Character user, CharacterAction action)
         {
             Console.WriteLine($"{user.name} usa {action.name} sobre varios objetivos.");
-            foreach (var t in action.targets)
+            /*foreach (var t in action.targets)
             {
                 Console.WriteLine($" - {t.name} HP: {t.hp}/{t.maxHP}");
-            }
-            Console.WriteLine();
+            }*/
+        }
+        public static void DisplayFireBall(Character user)
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine($"El cielo se enciende y todo retumba, {user.name} lanza una gigante bola de fuego sobre los enemigos");
+            Console.ResetColor();
+            Console.ReadLine();
         }
 
         public static void DisplayDefend(Playable p)
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"{p.name} Adopta una postura defensiva");
-            Console.WriteLine();
+            Console.ResetColor();
         }
         public static void DisplayHeal(Character user, int healAmount)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"{user.name} se cura {healAmount} puntos de vida.");
-            Console.WriteLine($"{user.name} HP: {user.hp}/{user.maxHP}");
-            Console.WriteLine();
+            Console.ResetColor();
         }
         public static void DisplayDefeat(Character unit)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             unit.isAlive = false;
             Console.WriteLine($"{unit.name} ha sido eliminAdo.");
-            Console.WriteLine();
+            Console.ResetColor();
+            Console.ReadKey();
         }
         public static void ShowStageClear()
         {
@@ -105,15 +113,18 @@ namespace ProyectoParejasPOO
         {
             Console.Clear();
             Console.WriteLine("¡Felicidades! Por tu perseveración has completAdo todas las etapas, tu premio es");
-            thread.sleep(2000);
+            Thread.Sleep(1000);
+
             Console.WriteLine("¡Felicidades! Por tu perseveración has completAdo todas las etapas, tu premio es.");
-            thread.sleep(1000);
+            Thread.Sleep(1000);
+
             Console.WriteLine("¡Felicidades! Por tu perseveración has completAdo todas las etapas, tu premio es..");
-            thread.sleep(1000);
+            Thread.Sleep(1000);
+
             Console.WriteLine("¡Felicidades! Por tu perseveración has completAdo todas las etapas, tu premio es...");
-            thread.sleep(4000);
+            Thread.Sleep(3000);
+
             Console.WriteLine("¡Una palmadita en la espalda¡");
-            thread.sleep(1000);
             Console.WriteLine("Presiona una tecla si quieres volver a jugar");
             Console.ReadKey();
         }
@@ -121,11 +132,11 @@ namespace ProyectoParejasPOO
         {
             while (true)
             {
-                Console.WriteLine($"Selecciona una acción para {player.name} (Mana: {player.mana}/{player.maxMana}):");
+                Console.WriteLine($"¿Qué hará {player.name}? (HP: {player.hp}/{player.maxHP}) - (Mana: {player.mana}/{player.maxMana})");
                 for (int i = 0; i < player.actions.Count; i++)
                 {
                     CharacterAction act = player.actions[i];
-                    Console.WriteLine($"{i + 1}) {act.name} - {act.description} (Costo de mana: {act.manaCost})");
+                    Console.WriteLine($"{i + 1}) {act.name}");
                 }
 
                 Console.Write("Opción: ");
@@ -141,7 +152,7 @@ namespace ProyectoParejasPOO
                             Console.WriteLine("No tienes suficiente mana para esa acción. Elige otra.");
                             continue;
                         }
-
+                        return selected;
                         ShowActionInfo(selected); // Es preferible usar la función dedicada a esto.
                         Console.WriteLine("¿Deseas usar esta acción? (s/n)");
                         string? confirm = Console.ReadLine();
@@ -149,7 +160,9 @@ namespace ProyectoParejasPOO
                             return selected;
                     }
                 }
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Opción inválida, intenta de nuevo.");
+                Console.ResetColor();
             }
         } //copilot (no tenía ni idea)
 
@@ -169,8 +182,6 @@ namespace ProyectoParejasPOO
             //}
 
             // Se puede saltar, esto se llama al momento de seleccionar una acción.
-
-            Console.WriteLine();
         }
 
 
@@ -178,6 +189,8 @@ namespace ProyectoParejasPOO
         {
             if (targets == null || targets.Count == 0)
                 throw new ArgumentException("No hay objetivos disponibles.");
+            if (targets.Count == 1)
+                return targets[0];
 
             Console.WriteLine("Selecciona un objetivo:");
             for (int i = 0; i < targets.Count; i++)
@@ -205,6 +218,7 @@ namespace ProyectoParejasPOO
 
         public static void DisplayDamage(Character target, int damage)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"{target.name} recibe {damage} de daño.");
             Console.WriteLine($"{target.name} HP: {target.hp}/{target.maxHP}");
             if (target.hp <= 0)
@@ -212,6 +226,7 @@ namespace ProyectoParejasPOO
                 DisplayDefeat(target);
             }
             Console.WriteLine();
+            Console.ResetColor();
         }
 
 
@@ -221,7 +236,36 @@ namespace ProyectoParejasPOO
             Console.WriteLine($"--- Etapa {stageIndex} ---");
             Console.WriteLine("Los enemigos se acercan y se preparan");
             Console.WriteLine("Presiona cualquier tecla para comenzar la batalla...");
-            Console.ReadKey();
+            Console.ReadKey(false);
         }
-    } 
+
+        public static void DisplayExperienceGain(Playable player, int exp)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"{player.name} gana {exp} puntos de experiencia!");
+            Console.ResetColor();
+        }
+
+        public static void DisplayLevelUp(Playable player, CharacterAction? action)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"{player.name} sube al nivel {player.level}!");
+            Console.WriteLine($"HP: {player.hp}/{player.maxHP}  ATK: {player.atk}  SPD: {player.spd}  Mana: {player.mana}/{player.maxMana}");
+
+            if (action != null)
+            {
+                Console.WriteLine($"¡{player.name} aprendió una nueva acción: {action.name}!");
+                Console.WriteLine(action.description);
+            }
+            Console.ResetColor();
+        }
+
+        public static void ShowRespite()
+        {
+            Console.Clear();
+            Console.WriteLine("Después de la batalla, tienes un momento para descansar y prepararte para lo que viene...");
+            Console.WriteLine("¡Recuperas tu vida y maná!");
+            Console.ReadKey(false);
+        }
+    }
 }

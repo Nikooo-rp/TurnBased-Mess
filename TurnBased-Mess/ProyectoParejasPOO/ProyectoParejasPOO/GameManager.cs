@@ -28,8 +28,16 @@ namespace ProyectoParejasPOO
         }
         public void RunBattle()
         {
-            Stage stage = stagesList.allStages[currentStageIndex];
+            //Console.WriteLine("CurrentStageIndex =" + currentStageIndex);
+            Stage stage = stagesList.allStages[currentStageIndex - 1];
+            currentEnemies.Clear();
             currentEnemies.AddRange(stage.GenerateEnemies());
+            BattleUI.ShowEnemiesIntro(currentEnemies);
+
+            foreach (Enemy e in currentEnemies)
+            {
+                e.OnDeath += GivePlayerExperience;
+            }
 
             SaveCurrentUnits();
             while (!IsBattleOver())
@@ -86,13 +94,17 @@ namespace ProyectoParejasPOO
         public void LoadNextStage()
         {
             currentStageIndex++;
-            if (currentStageIndex >= stagesList.allStages.Count)
+            if ((currentStageIndex - 1) >= stagesList.allStages.Count)
             {
                 BattleUI.ShowGameWin();
                 StartGame();
             }
             else
             {
+                if (stagesList.allStages[currentStageIndex - 1].respite)
+                {
+                    Respite();
+                }
                 BattleUI.ShowStageIntro(currentStageIndex);
                 RunBattle();
             }
@@ -110,6 +122,25 @@ namespace ProyectoParejasPOO
                 BattleUI.ShowGameOver();
                 StartGame();
             }
+        }
+        public void GivePlayerExperience(int exp)
+        {
+            // Aquí se podría implementar un sistema de experiencia para los personajes del jugador
+            foreach (Playable p in playerCharacters)
+            {
+                p.GainExperience(exp);
+            }
+        }
+
+        public void Respite()
+        {
+            // Aquí se podrían implementar mecánicas de respiro entre etapas, como curar a los personajes, ofrecer mejoras o permitir al jugador elegir su próximo camino.
+            foreach (Playable p in playerCharacters)
+            {
+                p.hp = p.maxHP;
+                p.mana = p.maxMana;
+            }
+            BattleUI.ShowRespite();
         }
     }
 }
