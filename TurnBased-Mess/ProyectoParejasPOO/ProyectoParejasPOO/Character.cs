@@ -57,9 +57,9 @@ namespace ProyectoParejasPOO
             if (this.hp <= 0)
             {
                 this.isAlive = false;
-                if (this is Enemy)
+                if (this is Enemy enemy)
                 {
-                    Enemy enemy = (Enemy)this;
+                    //Enemy enemy = (Enemy)this;
                     enemy.OnDeath?.Invoke(enemy.expOnDeath); // Disparamos el evento de muerte para otorgar experiencia al jugador
                 }
             }
