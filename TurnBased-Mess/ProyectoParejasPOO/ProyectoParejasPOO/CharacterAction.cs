@@ -50,7 +50,7 @@ namespace ProyectoParejasPOO
             }
             Character target = targets[0];
             int damage = (user.atk * power);
-            BattleUI.DisplayAttack(user, target, this);
+            BattleUI.DisplaySingleAttack(user, target, this);
             target.TakeDamage(damage);
         }
     }

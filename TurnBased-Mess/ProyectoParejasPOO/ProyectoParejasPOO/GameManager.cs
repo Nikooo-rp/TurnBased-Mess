@@ -23,7 +23,7 @@ namespace ProyectoParejasPOO
         public void CreateHero()
         {
             playerCharacters.Clear();
-            Playable hero = new Playable(BattleUI.CreateHeroName(), 10, 2, 5, 0, 1, 5, 1); // <-- Se definen las estadísticas bases del héroe.
+            Playable hero = new Playable(BattleUI.GetHeroName(), 10, 2, 5, 0, 1, 5, 1); // <-- Se definen las estadísticas bases del héroe.
             playerCharacters.Add(hero);
         }
         public void RunBattle()
@@ -105,7 +105,7 @@ namespace ProyectoParejasPOO
                 {
                     Respite();
                 }
-                BattleUI.ShowStageIntro(currentStageIndex);
+                BattleUI.ShowNewStageIntro(currentStageIndex);
                 RunBattle();
             }
             // Cargar enemigos y demás elementos de la siguiente etapa
@@ -120,6 +120,7 @@ namespace ProyectoParejasPOO
             else if (playerCharacters.All(p => !p.isAlive))
             {
                 BattleUI.ShowGameOver();
+                currentStageIndex = 0;
                 StartGame();
             }
         }

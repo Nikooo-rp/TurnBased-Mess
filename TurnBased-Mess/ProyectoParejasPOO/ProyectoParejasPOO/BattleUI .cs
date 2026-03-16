@@ -17,7 +17,7 @@ namespace ProyectoParejasPOO
             Console.ReadKey(false);
         }
 
-        public static string CreateHeroName()
+        public static string GetHeroName()
         {
             Console.Write("Nombre del héroe: ");
             string name = Console.ReadLine();
@@ -55,7 +55,7 @@ namespace ProyectoParejasPOO
                 Console.WriteLine($"Es el turno de {unit.name}");
 
         }
-        public static void DisplayAttack(Character user, Character target, CharacterAction action)
+        public static void DisplaySingleAttack(Character user, Character target, CharacterAction action)
         {
             Console.WriteLine($"{user.name} usa {action.name} sobre {target.name}.");
             Console.ReadLine();
@@ -88,7 +88,7 @@ namespace ProyectoParejasPOO
             Console.WriteLine($"{user.name} se cura {healAmount} puntos de vida.");
             Console.ResetColor();
         }
-        public static void DisplayDefeat(Character unit)
+        public static void ShowDefeat(Character unit)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             unit.isAlive = false;
@@ -224,14 +224,14 @@ namespace ProyectoParejasPOO
             Console.WriteLine($"{target.name} HP: {target.hp}/{target.maxHP}");
             if (target.hp <= 0)
             {
-                DisplayDefeat(target);
+                ShowDefeat(target);
             }
             Console.WriteLine();
             Console.ResetColor();
         }
 
 
-        public static void ShowStageIntro(int stageIndex)
+        public static void ShowNewStageIntro(int stageIndex)
         {
             Console.Clear();
             Console.WriteLine($"--- Etapa {stageIndex} ---");
