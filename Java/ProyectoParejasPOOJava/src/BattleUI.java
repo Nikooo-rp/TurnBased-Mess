@@ -17,7 +17,7 @@ public class BattleUI {
     public static String createHeroName() {
         System.out.print("Nombre del héroe: ");
         String name = scanner.nextLine();
-        if (name == null || name.isEmpty()) name = "Heroe";
+        if (name == null || name.isEmpty()) name = "Héroe";
         return name;
     }
 
