@@ -14,7 +14,7 @@ public class BattleUI {
         scanner.nextLine();
     }
 
-    public static String createHeroName() {
+    public static String getHeroName() {
         System.out.print("Nombre del héroe: ");
         String name = scanner.nextLine();
         if (name == null || name.isEmpty()) name = "Héroe";
@@ -42,7 +42,7 @@ public class BattleUI {
             System.out.println("Es el turno de " + unit.name);
     }
 
-    public static void displayAttack(Character user, Character target, CharacterAction action) {
+    public static void displaySingleAttack(Character user, Character target, CharacterAction action) {
         System.out.println(user.name + " usa " + action.name + " sobre " + target.name + ".");
         scanner.nextLine();
     }
@@ -151,7 +151,7 @@ public class BattleUI {
         System.out.println();
     }
 
-    public static void showStageIntro(int stageIndex) {
+    public static void showNewStageIntro(int stageIndex) {
         System.out.print("\033[H\033[2J");
         System.out.flush();
         System.out.println("--- Etapa " + stageIndex + " ---");

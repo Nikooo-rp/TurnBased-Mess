@@ -17,7 +17,7 @@ public class GameManager {
 
     public void createHero() {
         playerCharacters.clear();
-        Playable hero = new Playable(BattleUI.createHeroName(), 10, 2, 5, 0, 1, 5, 1);
+        Playable hero = new Playable(BattleUI.getHeroName(), 10, 2, 5, 0, 1, 5, 1);
         playerCharacters.add(hero);
     }
 
@@ -91,7 +91,7 @@ public class GameManager {
             if (stagesList.allStages.get(currentStageIndex - 1).respite) {
                 respite();
             }
-            BattleUI.showStageIntro(currentStageIndex);
+            BattleUI.showNewStageIntro(currentStageIndex);
             runBattle();
         }
     }
@@ -110,6 +110,7 @@ public class GameManager {
             loadNextStage();
         } else if (allPlayersDead) {
             BattleUI.showGameOver();
+            currentStageIndex = 0;
             startGame();
         }
     }

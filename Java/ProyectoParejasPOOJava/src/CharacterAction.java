@@ -35,7 +35,7 @@ class SingleTargetAttack extends CharacterAction {
     @Override
     public void execute() {
         Character target = targets.getFirst();
-        BattleUI.displayAttack(user, target, this);
+        BattleUI.displaySingleAttack(user, target, this);
         target.takeDamage(user.atk * power);
     }
 }
