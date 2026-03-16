@@ -17,7 +17,7 @@ namespace ProyectoParejasPOO
             Console.ReadKey(false);
         }
 
-        public static string CreateHeroName()
+        public static string GetHeroName()
         {
             Console.Write("Nombre del héroe: ");
             string name = Console.ReadLine();
