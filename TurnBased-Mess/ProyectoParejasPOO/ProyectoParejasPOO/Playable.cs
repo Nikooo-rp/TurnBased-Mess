@@ -6,7 +6,6 @@ namespace ProyectoParejasPOO
 {
     public class Playable: Character
     {
-        CharacterAction? chosenAction;
         public int mana;
         public int maxMana;
         public bool isDefending = false;
