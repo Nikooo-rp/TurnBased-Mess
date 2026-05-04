@@ -83,9 +83,9 @@ namespace ProyectoParejasPOO
             else
                 return playerCharacters.Where(p => p.isAlive).Cast<Character>().ToList();
         }
-        public CharacterAction RequestAction(Character character)
+        public CharacterAction RequestAction(Character c)
         {
-            return character.ChooseAction();
+            return c.ChooseAction();
         }
         public void ExecuteAction(Character user, CharacterAction action)
         {
@@ -114,7 +114,7 @@ namespace ProyectoParejasPOO
         {
             if (currentEnemies.All(e => !e.isAlive))
             {
-                BattleUI.ShowStageClear();
+                BattleUI.ShowStageCleared();
                 LoadNextStage();
             }
             else if (playerCharacters.All(p => !p.isAlive))
@@ -138,7 +138,7 @@ namespace ProyectoParejasPOO
             // Aquí se podrían implementar mecánicas de respiro entre etapas, como curar a los personajes, ofrecer mejoras o permitir al jugador elegir su próximo camino.
             foreach (Playable p in playerCharacters)
             {
-                p.hp = p.maxHP;
+                p.health = p.maxHealth;
                 p.mana = p.maxMana;
             }
             BattleUI.ShowRespite();

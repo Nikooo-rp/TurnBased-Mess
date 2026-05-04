@@ -55,7 +55,7 @@ namespace ProyectoParejasPOO
                 Console.WriteLine($"Es el turno de {unit.name}");
 
         }
-        public static void DisplaySingleAttack(Character user, Character target, CharacterAction action)
+        public static void DisplayAttack(Character user, Character target, CharacterAction action)
         {
             Console.WriteLine($"{user.name} usa {action.name} sobre {target.name}.");
             Console.ReadLine();
@@ -96,7 +96,7 @@ namespace ProyectoParejasPOO
             Console.ResetColor();
             Console.ReadKey();
         }
-        public static void ShowStageClear()
+        public static void ShowStageCleared()
         {
             Console.WriteLine("Etapa superada. Has limpiAdo la sala.");
             Console.WriteLine("Presiona una tecla para continuar...");
@@ -132,7 +132,7 @@ namespace ProyectoParejasPOO
         {
             while (true)
             {
-                Console.WriteLine($"¿Qué hará {player.name}? (HP: {player.hp}/{player.maxHP}) - (Mana: {player.mana}/{player.maxMana})");
+                Console.WriteLine($"¿Qué hará {player.name}? (HP: {player.health}/{player.maxHealth}) - (Mana: {player.mana}/{player.maxMana})");
                 for (int i = 0; i < player.actions.Count; i++)
                 {
                     CharacterAction act = player.actions[i];
@@ -167,11 +167,11 @@ namespace ProyectoParejasPOO
             }
         } //copilot (no tenía ni idea)
 
-        public static void ShowActionInfo(CharacterAction action) // En desuso.
+        public static void ShowActionInfo(CharacterAction act) // En desuso.
         {
-            Console.WriteLine($"Acción: {action.name}");
-            Console.WriteLine(action.description);
-            Console.WriteLine($"Poder: {action.power}   Costo de mana: {action.manaCost}");
+            Console.WriteLine($"Acción: {act.name}");
+            Console.WriteLine(act.description);
+            Console.WriteLine($"Poder: {act.power}   Costo de mana: {act.manaCost}");
 
             //if (action.targets.Count > 0)
             //{
@@ -197,7 +197,7 @@ namespace ProyectoParejasPOO
             for (int i = 0; i < targets.Count; i++)
             {
                 Character t = targets[i];
-                Console.WriteLine($"{i + 1}) {t.name} - HP: {t.hp}/{t.maxHP}");
+                Console.WriteLine($"{i + 1}) {t.name} - HP: {t.health}/{t.maxHealth}");
             }
             Console.Write("Opción: ");
             string? choice = Console.ReadLine();
@@ -221,8 +221,8 @@ namespace ProyectoParejasPOO
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"{target.name} recibe {damage} de daño.");
-            Console.WriteLine($"{target.name} HP: {target.hp}/{target.maxHP}");
-            if (target.hp <= 0)
+            Console.WriteLine($"{target.name} HP: {target.health}/{target.maxHealth}");
+            if (target.health <= 0)
             {
                 ShowDefeat(target);
             }
@@ -252,7 +252,7 @@ namespace ProyectoParejasPOO
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"{player.name} sube al nivel {player.level}!");
-            Console.WriteLine($"HP: {player.hp}/{player.maxHP}  ATK: {player.atk}  SPD: {player.spd}  Mana: {player.mana}/{player.maxMana}");
+            Console.WriteLine($"HP: {player.health}/{player.maxHealth}  ATK: {player.atk}  SPD: {player.speed}  Mana: {player.mana}/{player.maxMana}");
 
             if (action != null)
             {

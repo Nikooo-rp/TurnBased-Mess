@@ -50,7 +50,7 @@ namespace ProyectoParejasPOO
             }
             Character target = targets[0];
             int damage = (user.atk * power);
-            BattleUI.DisplaySingleAttack(user, target, this);
+            BattleUI.DisplayAttack(user, target, this);
             target.TakeDamage(damage);
         }
     }
@@ -139,7 +139,7 @@ namespace ProyectoParejasPOO
             }
 
             int healAmount = (user.atk * power);
-            user.hp = Math.Min(user.maxHP, user.hp + healAmount);
+            user.health = Math.Min(user.maxHealth, user.health + healAmount);
             BattleUI.DisplayHeal(user, healAmount);
 
         }

@@ -17,7 +17,7 @@ namespace ProyectoParejasPOO
 
             List<Character> ordered = allUnits
                 .Where(unit => unit != null && unit.isAlive)
-                .OrderByDescending(unit => unit.spd)
+                .OrderByDescending(unit => unit.speed)
                 .ToList();
 
             foreach (var unit in ordered)

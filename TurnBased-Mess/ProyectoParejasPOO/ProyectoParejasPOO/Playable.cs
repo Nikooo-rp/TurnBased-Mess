@@ -6,7 +6,6 @@ namespace ProyectoParejasPOO
 {
     public class Playable: Character
     {
-        CharacterAction? chosenAction;
         public int mana;
         public int maxMana;
         public bool isDefending = false;
@@ -30,10 +29,10 @@ namespace ProyectoParejasPOO
         public Playable(string name, int maxHp, int atk, int spd, int exp, int defense, int maxMana, int level) : base(name)
         {
             this.name = name;
-            this.maxHP = maxHp;
-            this.hp = this.maxHP;
+            this.maxHealth = maxHp;
+            this.health = this.maxHealth;
             this.atk = atk;
-            this.spd = spd;
+            this.speed = spd;
             this.exp = exp;
             this.defense = defense;
             this.maxMana = maxMana;
@@ -71,14 +70,14 @@ namespace ProyectoParejasPOO
                 LevelUp(level);
             }
         }
-        public void LevelUp(int level)
+        public void LevelUp(int newLvl)
         {
-            LevelEntry entry = LevelTable.Find(e => e.level == level);
+            LevelEntry entry = LevelTable.Find(e => e.level == newLvl);
             if (entry != null)
             {
-                maxHP += entry.hpBonus;
+                maxHealth += entry.hpBonus;
                 atk += entry.atkBonus;
-                spd += entry.spdBonus;
+                speed += entry.spdBonus;
                 defense += entry.defenseBonus;
                 maxMana += entry.manaBonus;
                 mana = maxMana; // Al subir de nivel, el jugador recupera todo su mana

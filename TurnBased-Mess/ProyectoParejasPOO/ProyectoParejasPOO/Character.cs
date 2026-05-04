@@ -6,7 +6,7 @@ namespace ProyectoParejasPOO
 {
     public abstract class Character
     {
-        public int hp, maxHP, atk, spd, exp, defense, level;
+        public int health, maxHealth, atk, speed, exp, defense, level;
         public string name;
         public bool isAlive = true;
         public List<CharacterAction> actions = new List<CharacterAction>();
@@ -16,7 +16,7 @@ namespace ProyectoParejasPOO
             this.name = name;
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(int ammount)
         {
             int oDefense = 0;
             if (this is Playable) // Si es jugador, revisamos si está defendiendo
@@ -31,14 +31,14 @@ namespace ProyectoParejasPOO
                 }
             }
 
-            int damageTaken = Math.Max(0, damage - this.defense);
+            int damageTaken = Math.Max(0, ammount - this.defense);
             if (damageTaken <= 0) // Si la defensa anula o supera el daño, no se resta HP, el ataque falla
             {
                 BattleUI.DisplayMiss();
             }
             else // De lo contrario, informamos que acierta.
             {
-                this.hp = Math.Max(0, this.hp - damageTaken);
+                this.health = Math.Max(0, this.health - damageTaken);
                 BattleUI.DisplayDamage(this, damageTaken);
 
                 if (this is Playable) // Si es jugador, reseteamos la defensa después de recibir daño
@@ -54,7 +54,7 @@ namespace ProyectoParejasPOO
                 }
             }
 
-            if (this.hp <= 0)
+            if (this.health <= 0)
             {
                 this.isAlive = false;
                 if (this is Enemy enemy)

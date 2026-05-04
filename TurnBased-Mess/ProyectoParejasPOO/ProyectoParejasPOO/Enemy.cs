@@ -7,10 +7,9 @@ namespace ProyectoParejasPOO
 {
     public class Enemy : Character
     {
-        public string chosenAction = string.Empty;
         public int expOnDeath;
         public int hpScaleFactor;
-        public int atkScaleFactor;
+        public int attackScaleFactor;
         
         // Evento que se dispara al morir el enemigo, para notificar al GameManager y otorgar experiencia al jugador
         // Action<int> es un delegado que representa un método que recibe un int (la experiencia otorgada) y no devuelve nada. El GameManager se suscribirá a este evento para recibir la experiencia cuando el enemigo muera.
@@ -36,9 +35,9 @@ namespace ProyectoParejasPOO
 
         public void ScaleStats()
         {
-            maxHP += hpScaleFactor * level;
-            hp = maxHP;
-            atk += atkScaleFactor * level;
+            maxHealth += hpScaleFactor * level;
+            health = maxHealth;
+            atk += attackScaleFactor * level;
             defense += Math.Min(0, level - 2);
             expOnDeath += (expOnDeath * level) - level*2;
             /*Console.ForegroundColor = ConsoleColor.Yellow;
@@ -52,9 +51,9 @@ namespace ProyectoParejasPOO
         public Slime(int level) : base("Slime", level)
         {
             hpScaleFactor = 3;
-            atkScaleFactor = 1;
+            attackScaleFactor = 1;
             expOnDeath = 10;
-            spd = 3;
+            speed = 3;
             defense = 0;
             ScaleStats();
         }
@@ -64,9 +63,9 @@ namespace ProyectoParejasPOO
         public Orc(int level) : base("Orco", level)
         {
             hpScaleFactor = 4;
-            atkScaleFactor = 2;
+            attackScaleFactor = 2;
             expOnDeath = 20;
-            spd = 2;
+            speed = 2;
             defense = 0;
             ScaleStats();
         }
@@ -76,9 +75,9 @@ namespace ProyectoParejasPOO
         public Troll(int level) : base("Troll", level)
         {
             hpScaleFactor = 5;
-            atkScaleFactor = 1;
+            attackScaleFactor = 1;
             expOnDeath = 30;
-            spd = 6;
+            speed = 6;
             defense = 1;
             ScaleStats();
         }
@@ -88,9 +87,9 @@ namespace ProyectoParejasPOO
         public MotherSlime(int level) : base("Madre Slime", level)
         {
             hpScaleFactor = 8;
-            atkScaleFactor = 2;
+            attackScaleFactor = 2;
             expOnDeath = 50;
-            spd = 1;
+            speed = 1;
             defense = 2;
             ScaleStats();
         }
@@ -100,9 +99,9 @@ namespace ProyectoParejasPOO
         public Giant(int level) : base("Gigante", level)
         {
             hpScaleFactor = 9;
-            atkScaleFactor = 4;
+            attackScaleFactor = 4;
             expOnDeath = 60;
-            spd = 1;
+            speed = 1;
             defense = 3;
             ScaleStats();
         }
@@ -114,9 +113,9 @@ namespace ProyectoParejasPOO
         public DarkWizard(int level) : base("Mago Oscuro", level)
         {
             hpScaleFactor = 7;
-            atkScaleFactor = 6;
+            attackScaleFactor = 6;
             expOnDeath = 70;
-            spd = 4;
+            speed = 4;
             defense = 2;
             ScaleStats();
         }
